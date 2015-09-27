@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Final Statistical Inference Part 2  9_26_2015</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h2>Statistical Inference – Data Analysis Part 2</h2>
+
+<h5>The Effect of Vitamin C on Tooth Growth in Guinea Pigs</h5>
+
+<h5>Author Name: DataRacer11</h5>
+
+<h5>9-26-2015</h5>
+
+<h5>References:</h5>
+
+<ul>
+<li>McNeil, D. R. (1977) Interactive Data Analysis. New York: Wiley.</li>
+<li>Crampton, E. W. (1947) The growth of the odontoblast of the incisor teeth as a criterion of vitamin C intake of the guinea pig. The Journal of Nutrition 33(5): 491–504. http://jn.nutrition.org/content/33/5/491.full.pdf </li>
+<li>C. I. Bliss (1952) The Statistics of Bioassay. Academic Press.</li>
+<li>R Tutorials - William B. King, Ph.D, Coastal Carolina University, http://ww2.coastal.edu/kingw/statistics/R-tutorials/factorial.html </li>
+</ul>
+
+<h2>Overview:</h2>
+
+<p>“ToothGrowth is a library dataset available in R. The dataset includes the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two delivery methods, (orange juice or ascorbic acid (a form of vitamin C and coded as VC).”
+The goal of this report is to analyze the ToothGrowth data of different dosage amounts of the Vitamin C. There are two supplement types of Vitamin C tested, Orange Juice and Ascorbic Acid, and they are given in three different milligram dosage amount, 0.5, 1.0, and 2.0. Tests involving some 650 pigs, were aimed at establishing an assay procedure that could achieve greater precision, simplicity and reliability. Archived data are available from studies focused on the length of odontoblasts of the incisor teeth as a criterion of vitamin C intake of guinea pigs.</p>
+
+<p>This report has been developed to respond to the following questions:
+1.  Was exploratory data analysis performed with at least a single plot or table highlighting basic features of the data?
+2.  Were relevant confidence intervals and/or tests performed on the data?
+3.  Were results of the tests and/or intervals interpreted in the context of the problem correctly?
+4.  Were assumptions described as needed to make conclusions?</p>
+
+<h3>Load the ToothGrowth data and perform some basic exploratory data analyses:</h3>
+
+<pre><code>library(datasets)
+</code></pre>
+
+<h3>Obtain a basic summary of the data. A snapshot of the data.frame:</h3>
+
+<pre><code>str(ToothGrowth)
+&gt; 'data.frame': 60 obs. of  3 variables:
+&gt;  $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
+&gt;  $ supp: Factor w/ 2 levels "OJ","VC": 2 2 2 2 2 2 2 2 2 2 ...
+&gt;  $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...
+
+summary(ToothGrowth)
+&gt;  lensupp dose  
+&gt;  Min.   : 4.20   OJ:30   Min.   :0.500  
+&gt;  1st Qu.:13.07   VC:30   1st Qu.:0.500  
+&gt;  Median :19.25   Median :1.000  
+&gt;  Mean   :18.81   Mean   :1.167  
+&gt;  3rd Qu.:25.27   3rd Qu.:2.000  
+&gt;  Max.   :33.90   Max.   :2.000
+</code></pre>
+
+<h3>Observe that the  data.frame after the library is loaded in R highlights 60 observations on 3 sets with 3 or more variables.</h3>
+
+<ol>
+<li>len      | numeric   |       Tooth length</li>
+<li>supp     | factor    |       Supplement type (VC or OJ).</li>
+<li>dose     | numeric   |       Dose in milligrams/day</li>
+</ol>
+
+<h3>Investigate the data table further</h3>
+
+<pre><code>dt&lt;-data.frame(ToothGrowth)
+</code></pre>
+
+<h2>Exploratory Data Analysis</h2>
+
+<pre><code>head(dt)
+   len supp dose
+&gt; 1  4.2   VC  0.5
+&gt; 2 11.5   VC  0.5
+&gt; 3  7.3   VC  0.5
+&gt; 4  5.8   VC  0.5
+&gt; 5  6.4   VC  0.5
+&gt; 6 10.0   VC  0.5
+
+summary(dt)
+&gt; lensupp dose  
+&gt;  Min.   : 4.20   OJ:30   Min.   :0.500  
+&gt;  1st Qu.:13.07   VC:30   1st Qu.:0.500  
+&gt;  Median :19.25   Median :1.000  
+&gt;  Mean   :18.81   Mean   :1.167  
+&gt;  3rd Qu.:25.27   3rd Qu.:2.000  
+&gt;  Max.   :33.90   Max.   :2.000 
+</code></pre>
+
+<h3>Correlating averages</h3>
+
+<p>The dataset ToothGrowth contains measurements on the effects on tooth length (len). These are based on variations of the Vitamin C dosages given to guinea pigs wiht the goal to gain insight to a more precise conclusion regarding reseracher's idea that an increase in Vitamin C would promote tooth growth. This can be checked by correlating the ToothGrowth (len) with ToohGrowth (dose).</p>
+
+<pre><code>cor(ToothGrowth$dose, ToothGrowth$len)
+&gt; [1] 0.8026913
+</code></pre>
+
+<p>For each level of dosage, there are several experimental units, as the experiment is replicated. Researchers use this as a common experimental design to average and then take the correlation of the averaged data. This can change the correlation significantly. The data can be split into three dosages groups and the dosages values can then be computed as well as the group averages.</p>
+
+<pre><code>l &lt;-split(ToothGrowth$len, ToothGrowth$dose)
+group_means &lt;- c(mean(l[[1]]), mean(l[[2]]), mean(l[[3]]))
+cor(c(0.5, 1, 2), group_means)
+&gt; [1] 0.9574428
+</code></pre>
+
+<p>The value of 0.95 for the aggregated data is higher than the value 0.80 for the individual data. In general, correlations formed from averages are typically close to 1 or -1 than when all of the data is considered individually. </p>
+
+<h3>Use confidence intervals and/or hypothesis tests to compare tooth growth by supp and dose.</h3>
+
+<h3>There are several ways that we can plot for data visualization such as this boxplot.</h3>
+
+<pre><code>boxplot(len ~ supp * dose, data=ToothGrowth, ylab="Tooth Length", main="Boxplots of Tooth Growth Data")
+</code></pre>
+
+<p><img src="http://i.imgur.com/Z41ZVLv.png" alt="" /></p>
+
+<h3>Calculate the length and mean by supplement and dose. Create a scatterplot to evaluate the doses</h3>
+
+<pre><code>avgs&lt;- aggregate(len~., data=ToothGrowth, mean)
+</code></pre>
+
+<h3>plot the scatter points and the averages</h3>
+
+<pre><code>library(ggplot2)
+g &lt;- ggplot(ToothGrowth, aes(x=dose, y=len))
+g &lt;- g + geom_point(aes(group=supp, colour=supp, size=2, alpha=0.6))
+g &lt;- g + geom_line(data=avgs, aes(group=supp, colour=supp))
+print(g)
+</code></pre>
+
+<p><img src="http://i.imgur.com/sD0l1ET.png" alt="" /></p>
+
+<h2>Compare tooth growth by supp and dose</h2>
+
+<p>In order to understand how Vitamin C affects tooth growth, the following conclusions below have been made while investigating confidence intervals. Supplement and dosage baselines were taken into consideration.</p>
+
+<p>Let's look at our hypothesis that with increased Vitamin C dosage from 0.5 to 1.0 milligrams, and from 1.0 to 2.0 milligrams the confidence interval does not contain zero. Therefore, we can conclude that dosage does effect the rate of tooth growth in guinea pigs:</p>
+
+<p>To test this hypothesis, create subsets of the data for conducting several T.Tests to better understand the confidence interval.To analyze tooth growth, we carry out two-sample (orange juice vs. ascorbic acid) T-tests at each dosage level.</p>
+
+<h4>T-Test at .5 mg</h4>
+
+<pre><code>t.test(len ~ supp, ToothGrowth[ToothGrowth$dose == .5, ])
+
+&gt; Welch Two Sample t-test
+&gt; 
+&gt; data:  len by supp
+&gt; t = 3.1697, df = 14.969, p-value = 0.006359
+&gt; alternative hypothesis: true difference in means is not equal to 0
+&gt; 95 percent confidence interval:
+&gt;  1.719057 8.780943
+&gt; sample estimates:
+&gt; mean in group OJ mean in group VC 
+&gt;13.23 7.98 
+</code></pre>
+
+<h4>T-Test at 1 mg</h4>
+
+<pre><code>t.test(len ~ supp, ToothGrowth[ToothGrowth$dose == 1, ])
+&gt; 
+&gt;   Welch Two Sample t-test
+&gt; 
+&gt; data:  len by supp
+&gt; t = 4.0328, df = 15.358, p-value = 0.001038
+&gt; alternative hypothesis: true difference in means is not equal to 0
+&gt; 95 percent confidence interval:
+&gt;  2.802148 9.057852
+&gt; sample estimates:
+&gt; mean in group OJ mean in group VC 
+&gt;22.7016.77 
+</code></pre>
+
+<h4>T-Test at 2 mg</h4>
+
+<pre><code>&gt; t.test(len ~ supp, ToothGrowth[ToothGrowth$dose == 2, ])
+&gt; 
+&gt;   Welch Two Sample t-test
+&gt; 
+&gt; data:  len by supp
+&gt; t = -0.046136, df = 14.04, p-value = 0.9639
+&gt; alternative hypothesis: true difference in means is not equal to 0
+&gt; 95 percent confidence interval:
+&gt;  -3.79807  3.63807
+&gt; sample estimates:
+&gt; mean in group OJ mean in group VC 
+&gt;26.0626.14 
+</code></pre>
+
+<h3>Summary and Assumptions:</h3>
+
+<ul>
+<li>The confidence intervals are assumed to not be paired, comparing two different supplement types from individual guinea pig did not take place.</li>
+<li>The dataset contains six measurements for ten guinea pigs each, three for each dose for each of the two supplement types. As it is not the same ten guinea pigs for each of the six measurements, we cannot effectively analyze the differences of the three different dose measurements (for each supplement type). </li>
+<li>We cannot assume equal variances within each group. As we only have n=10 observations, T-tests were performed with α=0.05</li>
+<li>The samples are independent.</li>
+<li>The distribution approximately is normal.</li>
+</ul>
+
+<h3>Conclusions:</h3>
+
+<ul>
+<li>As Vitamin C dose size alone increases, the tooth length increases as well</li>
+<li>We have analyzed the influence of both the dosage and the supplement type of Vitamin C on the length of the guinea pigs’ teeth. </li>
+<li>We have found that the dosage very likely has an impact on the length of the teeth, whereas the supplement type has no significant impact.</li>
+<li>The supplement type of Orange Juice affects tooth length greater then Ascorbic Acid, or Vitamin C with a 0.5 and 1.0 dose size. </li>
+<li>When the dose size reached 2.0 milligrams, the effect between Orange Juice and Ascorbic Acid is very similar.</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
